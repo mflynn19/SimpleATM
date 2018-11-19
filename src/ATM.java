@@ -2,38 +2,34 @@ import java.util.Scanner;
 
 public class ATM {
 	private BankAccount acc;
+	private AccountHolder per;
 	private Scanner in = new Scanner(System.in);
-	public ATM(BankAccount acc) {
+	public ATM(BankAccount acc, AccountHolder per) {
 		this.acc = acc;
+		this.per= per;
 	}
 	public void deposit() {
 		int k = in.nextInt();
 		in.nextLine();
-		acc.setbalance(acc.getbalance() + k); 
+		acc.setBalance(acc.getBalance() + k); 
 	}
 	public void withdraw() {
 		int k = in.nextInt();
 		in.nextLine();
-		if (k < acc.getbalance()) {
-			acc.setbalance(acc.getbalance() - k);
+		if (k < acc.getBalance()) {
+			acc.setBalance(acc.getBalance() - k);
 		}
 	}
 	public void menu() {
-		System.out.println("Welcome to the bank of FAFSA. Please enter your SSN.");
-		int i = in.nextInt();
+		System.out.println("Welcome to the bank of UCVTS. Please enter your account number.");
+		long i = in.nextLong();
 		in.nextLine();
-		while (i != acc.getSSN) {
-			System.out.println("You have no account here. Please try again.");
-		}
-		else {
+		if (i == acc.getAccountNumber()) {
 			System.out.println("Please enter your pin.");
-			int j = in.nextInt();
+			int n = in.nextInt();
 			in.nextLine();
-			while (j != acc.getpin) {
-				System.out.println("Incorrect pin please try again.");
-			}
-			else {
-				System.out.println("Please select 1 to withdraw; 2 to deposit; 3 to see your account balance.");
+			if (n == per.getPIN()) {
+				System.out.println("Please select 1 to withdraw; 2 to deposit; 3 to see your account balance; 4 to exit.");
 				int select = in.nextInt();
 				switch(select) {	
 				case 1:
@@ -47,35 +43,27 @@ public class ATM {
 						System.out.println("Invalid amount!");
 					}
 					else {
-						System.out.println("Your current balance is " + balance);
+						System.out.println("Your current balance is " + acc.getBalance());
 					}
-					break;
-				
-				case 2:
-					double addition = in.nextDouble();
-					in.nextLine();
-					double what = acc.deposit(what);
-					System.out.println("Your current balance is" + what);
-					break;
-				
-				case 3:
-					double isit = in.NextDouble();
-					in.nextLine();
-					double where = acc.balance(balance);
-
-					System.out.println("Your current balance is" + acc.balance(balance));
-					break;
+							break;
+						
+						case 2:
+							double addition = in.nextDouble();
+							in.nextLine();
+							double what = acc.deposit(addition);
+							System.out.println("Your current balance is " + what + ".");
+							break;
+						
+						case 3:
+							System.out.println("Your current balance is " + acc.getBalance() + " .");
+							break;
+						case 4:
+							System.out.println("Thank you for visiting the bank of UCVTS! Goodbye!");
+					}
+				}
 			}
+		else {
+			System.out.println("Please reenter your account information.");
+		}
 		}
 	}
-	Scanner.close();     
-}
-
-
-
-
-System.out.println("Please type in your SSN.");
-int n = s.nextInt();
-if (n != SSN) {
-	System.out.println("Please type in a valid SSN.");
-}

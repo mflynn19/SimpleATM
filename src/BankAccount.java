@@ -1,45 +1,94 @@
 public class BankAccount {
+	
 	private static long generatedAccountNumber = 100000001L;
 	
-	private double balance;
 	private long accountNumber;
-	private int pin;
-	private AccountHolder person;
-	public BankAccount(double balance, int accountNumber, int pin, AccountHolder) {
+	private double balance;
+	private AccountHolder AccountHolder;
+	
+	/**
+	 * Constructor for BankAccount class.
+	 * 
+	 * @param balance
+	 * @param AccountHolder
+	 */
+	
+	public BankAccount(double balance, AccountHolder AccountHolder) {
+		this.accountNumber = BankAccount.generatedAccountNumber++;
 		this.balance = balance;
-		this.accountNumber = acccountNumber;
-		this.pin = pin;
+		this.AccountHolder = AccountHolder;
 	}
+	
+	/////////////////////////////////// GETTERS AND SETTERS ///////////////////////////////////
+	
+	/**
+	 * Retrieves the account number.
+	 * 
+	 * @return accountNumber
+	 */
+	
+	public long getAccountNumber() {
+		return accountNumber;
+	}
+	
+	/**
+	 * Retrieves the balance.
+	 * 
+	 * @return balance
+	 */
 	
 	public double getBalance() {
 		return balance;
 	}
-	public void setBalance(double balance) {
-		this.balance= balance;
-	}
 	
+	/**
+	 * Retrieves the AccountHolder.
+	 * 
+	 * @return AccountHolder
+	 */
 	
-	public int getAccountNumber() {
-		return accountNumber;
-	}
-	public void setAccountNumber (long accountNumber) {
-		this.accountNumber= accountNumber;
-	}
-	
-	
-	public int getPin() {
-		return pin;
-	}
-	public void setPin(int pin) {
-		this.pin= pin;
-	}
-	
-	public int getAccountHolder() {
+	public AccountHolder getAccountHolder() {
 		return AccountHolder;
 	}
-	public void setAccountHolder(AcountHolder) {
-		this.AccountHolder= AccountHolder;
+	
+	/**
+	 * Sets the value of accountNumber.
+	 * 
+	 * @param accountNumber the new account number
+	 */
+	
+	public void setAccountNumber(long accountNumber) {
+		this.accountNumber = accountNumber;
 	}
+	
+	/**
+	 * Sets the value of balance.
+	 * 
+	 * @param balance the new balance
+	 */
+	
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	
+	/**
+	 * Sets the value of AccountHolder.
+	 * 
+	 * @param AccountHolder the new AccountHolder
+	 */
+	
+	public void setAccountHolder(AccountHolder AccountHolder) {
+		this.AccountHolder = AccountHolder;
+	}
+	
+	/////////////////////////////////// INSTANCE METHODS ///////////////////////////////////
+	
+	/**
+	 * Deposits money into this account.
+	 * 
+	 * @param amount the money to deposit
+	 * @return a status code (0: invalid amount, 1: success)
+	 */
 	
 	public int deposit(double amount) {
 		if (amount <= 0) {
@@ -49,10 +98,14 @@ public class BankAccount {
 			
 			return 1;
 		}
-		if (return != 1){
-			System.out.println("Invalid deposit amount.");
-		}
 	}
+	
+	/**
+	 * Withdraws money from this account.
+	 * 
+	 * @param amount the money to withdraw
+	 * @return a status code (0: insufficient funds, 1: invalid amount, 2: success)
+	 */
 	
 	public int withdraw(double amount) {
 		if (amount > balance) {
@@ -61,6 +114,7 @@ public class BankAccount {
 			return 1;
 		} else {
 			balance = balance - amount;
+			
 			return 2;
 		}
 	}
