@@ -33,6 +33,7 @@ public class ATM {
 					select = in.nextInt();
 					switch(select) {	
 					case 1:
+						System.out.println("How much money would you like to withdraw?");
 						double want = in.nextDouble();
 						in.nextLine();
 						double who = acc.withdraw(want);
@@ -48,10 +49,16 @@ public class ATM {
 						break;
 
 					case 2:
+						System.out.println("How much money would you like to deposit?");
 						double addition = in.nextDouble();
 						in.nextLine();
 						double what = acc.deposit(addition);
-						System.out.println("Your current balance is " + what + ".");
+						if (what == 0) {
+							System.out.println("Cannot deposit value.");
+						}
+						else {
+							System.out.println("Your current balance is " + acc.getBalance() + ".");
+						}
 						break;
 
 					case 3:
